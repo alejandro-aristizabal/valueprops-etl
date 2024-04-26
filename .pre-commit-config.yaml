@@ -1,0 +1,64 @@
+repos:
+  # black is a code formatter in Python
+  - repo: https://github.com/ambv/black
+    rev: 22.10.0
+    hooks:
+      - id: black
+        args: ["--config", "pyproject.toml"]
+
+  # flake8 checks the style and quality of the Python code
+  - repo: https://github.com/pycqa/flake8
+    rev: 5.0.4
+    hooks:
+      - id: flake8
+        entry: pflake8
+        args: ["--config", "pyproject.toml"]
+        additional_dependencies: [pyproject-flake8]
+
+  # isort sorts imported libraries alphabetically
+  - repo: https://github.com/timothycrosley/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: ["--sp", "pyproject.toml"]
+
+  # interrogate checks the codebase for missing docstrings
+  - repo: https://github.com/econchick/interrogate
+    rev: 1.5.0
+    hooks:
+      - id: interrogate
+        args: ["--config", "pyproject.toml"]
+
+  # mypy checks the type annotations in the code
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.9.0
+    hooks:
+      - id: mypy
+        args: ["--config-file", "pyproject.toml", "--show-error-codes"]
+        additional_dependencies:
+            - "types-toml"
+
+  # pylint checks the code for errors and quality
+  # - repo: https://github.com/pycqa/pylint
+  #   rev: v3.1.0
+  #   hooks:
+  #     - id: pylint
+  #       args: ["--rcfile", "pyproject.toml"]
+  #       additional_dependencies:
+  #           - "loguru==0.7.0"
+  #           - "python-dotenv"
+  #           - "azure-storage-blob"
+  #           - "opencensus-ext-azure"
+  #           - "azure-core"
+  #           - "toml"
+  #           - "pandas"
+  #           - "pydantic_settings"
+  #           - "mlflow"
+  #           - "numpy"
+  #           - "scikit-learn"
+  #           - "databricks-sql-connector"
+  #           - "sqlalchemy"
+  #           - "fastapi"
+  #           - "joblib"
+  #           - "passlib"
+  #       language_version: python3.11

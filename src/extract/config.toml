@@ -1,0 +1,85 @@
+[data_sources]
+
+[data_sources.pays]
+path = "../data/pays.csv"
+reader = "CSVReader"
+schema = "PaymentsSchema"
+
+[data_sources.prints]
+path = "../data/prints.json"
+reader = "JSONLReader"
+schema = "PrintsSchema"
+columns = [
+    [
+        'day',
+    ],
+    [
+        'user_id',
+    ],
+    [
+        [
+            'event_data',
+        ],
+        [
+            'position',
+        ],
+    ],
+    [
+        [
+            'event_data',
+        ],
+        [
+            'value_prop',
+        ],
+    ],
+]
+
+# [data_sources.prints.columns]
+
+
+[data_sources.taps]
+path = "../data/taps.json"
+reader = "JSONLReader"
+schema = "TapsSchema"
+columns = [
+    [
+        'day',
+    ],
+    [
+        'user_id',
+    ],
+    [
+        [
+            'event_data',
+        ],
+        [
+            'position',
+        ],
+    ],
+    [
+        [
+            'event_data',
+        ],
+        [
+            'value_prop',
+        ],
+    ],
+]
+
+
+# Validation schemas specifications
+
+[schemas]
+
+[schemas.PaymentsSchema]
+user_id = { type = "String", coerce = true }
+pay_date = { type = "DateTime", coerce = true }
+total = { type = "Float", checks = "0 <= x <= 10000" }
+
+[schemas.PrintsSchema]
+user_id = { type = "String", coerce = true }
+day = { type = "DateTime", coerce = true }
+
+[schemas.TapsSchema]
+user_id = { type = "String", coerce = true }
+day = { type = "DateTime", coerce = true }
